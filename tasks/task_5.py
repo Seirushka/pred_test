@@ -34,11 +34,8 @@ with open('../students.csv', encoding='utf-8') as file:
 
     # Генерирует хэш учеников и добавляет обновленные строки в новую базу данных
     for line in reader:
-        hash_id = generate_hash_id(line[1])
-
-        line = line[1:]
-        new_line = [str(hash_id)] + line
-        new_data.append(new_line)
+        line[0] = generate_hash_id(line[1])
+        new_data.append(line)
 
 # Создает новый файл с обновленной базой данных
 with open('students_with_hash.csv', 'w', newline='', encoding='utf-8') as file:
